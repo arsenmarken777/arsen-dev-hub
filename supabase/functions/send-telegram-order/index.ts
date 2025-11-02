@@ -25,6 +25,14 @@ serve(async (req) => {
   try {
     const orderData: OrderRequest = await req.json();
     console.log('Received order:', orderData);
+    console.log('Using TELEGRAM_CHAT_ID:', TELEGRAM_CHAT_ID);
+    
+    // Debug: Get bot info
+    const botInfoResponse = await fetch(
+      `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getMe`
+    );
+    const botInfo = await botInfoResponse.json();
+    console.log('Bot info:', botInfo);
 
     // Format message for Telegram
     const message = `
